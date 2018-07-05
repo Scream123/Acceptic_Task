@@ -1,0 +1,16 @@
+AddDefaultCharset utf-8
+Options +FollowSymLinks
+#включаем mod_rewrite
+RewriteEngine on
+RewriteBase /
+
+# Запрет выдачи листинга пустого каталога
+Options -Indexes
+# При обращении к каталогу открывается файл index.php
+DirectoryIndex index.php
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+   RewriteRule ^(.*)$ index.php [L,QSA]
